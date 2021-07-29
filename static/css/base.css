@@ -40,8 +40,15 @@ body {
 
 .btn-outline-black {
     background: white;
-    color: black !important; /* override link colours for <a> elements */
+    color: black !important; /* use important to override link colors for <a> elements */
     border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
 }
 
 .shop-now-button:hover,
@@ -61,18 +68,19 @@ body {
 .border-black {
     border: 1px solid black !important;
 }
+
 .bg-black {
     background: #000 !important;
 }
 
 .overlay {
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: white;
-    z-index: -1;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
 }
 
 a.category-badge > span.badge:hover {
@@ -98,6 +106,8 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
+/* ------------------------------- bootstrap toasts */
+
 .message-container {
     position: fixed;
     top: 72px;
@@ -105,7 +115,7 @@ input[name='q']::placeholder {
     z-index: 99999999999;
 }
 
-.custom-text {
+.custom-toast {
     overflow: visible;
 }
 
@@ -164,6 +174,15 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
@@ -218,13 +237,35 @@ input[name='q']::placeholder {
 	color: #17a2b8; /* text-info */
 }
 
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
-  }
-  
+/* Product Form */
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+    border-color: #dc3545;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 0;
+}
+
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -234,17 +275,18 @@ input[name='q']::placeholder {
         left: 0;
         z-index: 1030;
     }
-  
+
     .header-container {
         padding-top: 164px;
     }
 }
 
-/* pad the top when navbar is collapsed on mobile */
+/* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
         padding-top: 116px;
     }
+
     body {
         height: calc(100vh - 116px);
     }
